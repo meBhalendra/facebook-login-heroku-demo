@@ -1,5 +1,5 @@
 {
-  "name": "facebook-authentication-demo",
+  "name": "facebook-login-heroku-demo",
   "version": "1.0.0",
   "scripts": {
     "start": "http-server",
