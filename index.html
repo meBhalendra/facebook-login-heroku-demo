@@ -21,20 +21,19 @@
         js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <script>
-
 
       function checkLoginState() {
         FB.getLoginStatus(function (response) {
-          console.log(response);
-          FB.api('/v11.0/361256769118880',);
+          if (response.status == 'connected') {
+            const userid = response.authResponse.userID
+            FB.api('/me', { fields: 'name, picture, email' }, function (response) {
+              console.log(response);
+            });
+          }
         });
       }
 
       /*
-      
       {
           status: 'connected',
           authResponse: {
@@ -44,7 +43,6 @@
               userID:'...'
           }
       }
-      
       status specifies the login status of the person using the app. The status can be one of the following:
       connected - the person is logged into Facebook, and has logged into your app.
       not_authorized - the person is logged into Facebook, but has not logged into your app.
@@ -54,14 +52,13 @@
       expiresIn - indicates the UNIX time when the token expires and needs to be renewed.
       signedRequest - a signed parameter that contains information about the person using the app.
       userID - the ID of the person using the app.
-      
       */
 
     </script>
 
   </head>
 
-  <body style="display:flex; flex-direction: column; justify-content: space-around;">
+  <body style="display:flex; flex-direction: column; justify-content: space-around; align-items: center;">
 
     <h1>Feacebook Login Demo</h1>
 
