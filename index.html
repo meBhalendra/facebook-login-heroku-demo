@@ -26,8 +26,14 @@
         FB.getLoginStatus(function (response) {
           if (response.status == 'connected') {
             const userid = response.authResponse.userID
-            FB.api('/me', { fields: 'name, picture, email' }, function (response) {
-              console.log(response);
+            FB.api('/me', { fields: 'name, picture, email' }, function (res) {
+              document.getElementById('user').innerHTML = `
+              <ul>
+                <li>Name: ${res.name}</li>
+                <li>Email: ${res.email}</li>
+                <li>FB_ID: ${res.id}</li>
+                <li>Photo: <img src="${res.picture.data.url}"/></li>
+              `;
             });
           }
         });
@@ -60,10 +66,18 @@
 
   <body style="display:flex; flex-direction: column; justify-content: space-around; align-items: center;">
 
-    <h1>Feacebook Login Demo</h1>
+    <div id="title">
+      <h1>Feacebook Login Demo</h1>
+    </div>
 
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    </fb:login-button>
+    <div id="user">
+
+    </div>
+
+    <div id="login">
+      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+      </fb:login-button>
+    </div>
 
   </body>
 

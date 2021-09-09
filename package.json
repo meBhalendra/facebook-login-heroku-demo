@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "http-server",
+    "deploy": "git add . && git commit -m up && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
