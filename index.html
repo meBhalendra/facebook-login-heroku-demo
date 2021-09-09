@@ -34,6 +34,7 @@
                 <li>FB_ID: ${res.id}</li>
                 <li>Photo: <img src="${res.picture.data.url}"/></li>
               `;
+              document.getElementById('login').remove();
             });
           }
         });
@@ -75,7 +76,7 @@
     </div>
 
     <div id="login">
-      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" autologoutlink="true">
+      <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
       </fb:login-button>
     </div>
 
